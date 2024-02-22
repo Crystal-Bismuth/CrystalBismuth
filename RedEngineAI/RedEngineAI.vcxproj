@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\AIComponent.h" />
+    <ClInclude Include="Header Files\CohesionAIComponent.h" />
     <ClInclude Include="Header Files\RandomAIComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\AIComponent.cpp" />
+    <ClCompile Include="Source Files\CohesionAIComponent.cpp" />
     <ClCompile Include="Source Files\RandomAIComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

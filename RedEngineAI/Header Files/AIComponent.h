@@ -5,12 +5,16 @@
 class AIComponent : Trackable
 {
 public:
-	Vector2D getValue() { return mValue; }
+	Vector2D getValue() { return mValue * mWeight; }
 
 protected:
 	AIComponent();
+	AIComponent(float weight);
 	~AIComponent();
 
 	Vector2D mValue;
+
+private:
+	float mWeight;
 
 };

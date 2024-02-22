@@ -7,6 +7,12 @@ RandomAIComponent::RandomAIComponent()
 	update();
 }
 
+RandomAIComponent::RandomAIComponent(float weight)
+	: AIComponent(weight)
+{
+	update();
+}
+
 RandomAIComponent::~RandomAIComponent()
 {
 
