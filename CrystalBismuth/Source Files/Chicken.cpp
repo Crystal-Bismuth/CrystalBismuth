@@ -4,8 +4,7 @@
 #include "Texture2D.h"
 #include "Animation.h"
 #include "ChickenManager.h"
-
-const float pi = 3.14159265358979323846f;
+#include "Math.h"
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenColor color, Vector2D location)
 {
@@ -265,7 +264,7 @@ void Chicken::move() //Maybe move animation/sprite changes into it's own functio
 {
 	if (mMoveUpdateTimer <= 0.0f)
 	{
-		float randomAngle = ((float)rand() / (float)RAND_MAX) * 2 * pi;
+		float randomAngle = ((float)rand() / (float)RAND_MAX) * 2 * PI;
 		Vector2D dir = Vector2D(cos(randomAngle), sin(randomAngle));
 
 		float randomDistance = ((float)rand() / (float)RAND_MAX * (MAXIMUM_MOVE_DISTANCE - MINIMUM_MOVE_DISTANCE)) + MINIMUM_MOVE_DISTANCE;
