@@ -11,6 +11,7 @@ protected:
 	AIComponent();
 	~AIComponent();
 
+private:
 	Vector2D mValue;
 
 };
