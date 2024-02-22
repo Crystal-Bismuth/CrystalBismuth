@@ -39,6 +39,8 @@ public:
 
 	float operator[](int) const;
 
+	Vector4D operator-();
+
 	std::ostream& write(std::ostream& out) const;
 	std::string toString() const;
 

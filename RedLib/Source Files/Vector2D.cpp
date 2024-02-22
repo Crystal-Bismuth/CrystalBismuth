@@ -140,6 +140,13 @@ Vector2D Vector2D::operator/=(const float scalar)
 	return *this;
 }
 
+Vector2D Vector2D::operator-()
+{
+	mX = -mX;
+	mY = -mY;
+	return *this;
+}
+
 float Vector2D::length() const
 {
 	if(!mX && !mY)

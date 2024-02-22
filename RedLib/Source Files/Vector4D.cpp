@@ -136,6 +136,15 @@ Vector4D Vector4D::operator/=(const float scalar)
 	return *this;
 }
 
+Vector4D Vector4D::operator-()
+{
+	mX = -mX;
+	mY = -mY;
+	mZ = -mZ;
+	mW = -mW;
+	return *this;
+}
+
 float Vector4D::length() const
 {
 	if(!mX && !mY && !mZ && !mW)

@@ -126,6 +126,14 @@ Vector3D Vector3D::operator/=(const float scalar)
 	return *this;
 }
 
+Vector3D Vector3D::operator-()
+{
+	mX = -mX;
+	mY = -mY;
+	mZ = -mZ;
+	return *this;
+}
+
 float Vector3D::length() const
 {
 	if(!mX && !mY && !mZ)

@@ -43,6 +43,8 @@ public:
 
 	float operator[](int) const;
 
+	Vector2D operator-();
+
 	std::ostream& write(std::ostream& out) const;
 	std::string toString() const;
 
