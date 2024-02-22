@@ -1,5 +1,5 @@
 #include "RandomAIComponent.h"
-#include "Math.h"
+#include "MathConstants.h"
 
 RandomAIComponent::RandomAIComponent()
 	: AIComponent()

@@ -4,7 +4,7 @@
 #include "Texture2D.h"
 #include "Animation.h"
 #include "ChickenManager.h"
-#include "Math.h"
+#include "MathConstants.h"
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenColor color, Vector2D location)
 {

@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\IsolatedTrackable.h" />
+    <ClInclude Include="Header Files\MathConstants.h" />
     <ClInclude Include="Header Files\Matrix2D.h" />
     <ClInclude Include="Header Files\Matrix3D.h" />
     <ClInclude Include="Header Files\Matrix4D.h" />
