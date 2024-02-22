@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\AIComponent.h" />
+    <ClInclude Include="Header Files\AlignmentAIComponent.h" />
     <ClInclude Include="Header Files\CohesionAIComponent.h" />
     <ClInclude Include="Header Files\RandomAIComponent.h" />
     <ClInclude Include="Header Files\SeparationAIComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\AIComponent.cpp" />
+    <ClCompile Include="Source Files\AlignmentAIComponent.cpp" />
     <ClCompile Include="Source Files\CohesionAIComponent.cpp" />
     <ClCompile Include="Source Files\RandomAIComponent.cpp" />
     <ClCompile Include="Source Files\SeparationAIComponent.cpp" />
