@@ -12,7 +12,7 @@ AlignmentAIComponent::~AlignmentAIComponent()
 
 }
 
-void AlignmentAIComponent::update(Vector2D originLoc, Vector2D* otherHeadings, int numOthers)
+void AlignmentAIComponent::update(Vector2D originLoc, Vector2D* otherPositions, Vector2D* otherHeadings, int numOthers)
 {
 	Vector2D* otherOffsets = new Vector2D[numOthers];
 
