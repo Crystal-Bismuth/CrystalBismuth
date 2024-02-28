@@ -2,7 +2,7 @@
 #include <Vector2D.h>
 #include <Trackable.h>
 
-class AIComponent : Trackable
+class AIComponent : public Trackable
 {
 public:
 	Vector2D getValue() { return mValue * mWeight; }

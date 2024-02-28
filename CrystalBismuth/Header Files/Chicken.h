@@ -8,8 +8,8 @@
 class Sprite;
 class Texture2D;
 class AnimationData;
-
-
+class RandomAIComponent;
+class MeanAIComponent;
 
 const float STARTING_MOVEMENT_TIMER = 3.0f;
 
@@ -17,7 +17,7 @@ const float MAXIMUM_MOVE_TIMER = 3.0f;
 const float MINIMUM_MOVE_TIMER = 1.0f;
 //const float DEBUG_MOVE_TIMER = 1.0f;
 
-const float MOVEMENT_SPEED = 0.01f;
+const float MOVEMENT_SPEED = 0.05f;
 
 const float MAXIMUM_MOVE_DISTANCE = 1.0f;
 const float MINIMUM_MOVE_DISTANCE = 0.25f;
@@ -162,5 +162,10 @@ private:
 
 	ChickenProperties mProperties;
 
+	RandomAIComponent* mAI;
+	MeanAIComponent* mAI2;
+
 	bool mIsEvolved; //Change this to a enum for evolution type later
+
+
 };

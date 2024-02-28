@@ -75,6 +75,7 @@ Game::~Game()
 
 void Game::init(int mFPS)
 {
+	srand(time(NULL));
 
 	mpGraphicsSystem = GraphicsSystem::getInstance();
 	mpInputSystem = InputSystem::getInstance();
@@ -276,8 +277,6 @@ void Game::init(int mFPS)
 	EventSystem::getInstance()->addListener(Event::KEYBOARD_EVENT, mpGameListener);
 	EventSystem::getInstance()->addListener((Event::EventType)GameEvent::CHICKEN_CLICK_EVENT, mpGameListener);
 	EventSystem::getInstance()->addListener((Event::EventType)GameEvent::RESEARCH_ADD_EVENT, mpGameListener);
-
-	srand(time(NULL));
 }
 
 void Game::loadData()

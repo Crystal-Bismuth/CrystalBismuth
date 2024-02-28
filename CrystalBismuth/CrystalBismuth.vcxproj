@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\RedEngineInput\Header Files;Header Files;..\RedLib\Header Files;..\RedEnginePhysics\Header Files;..\RedEngineGraphics\Header Files;..\RedEngine\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\spyid\Documents\CrystalBismuth\RedEngineAI\Header Files;..\RedEngineInput\Header Files;Header Files;..\RedLib\Header Files;..\RedEnginePhysics\Header Files;..\RedEngineGraphics\Header Files;..\RedEngine\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

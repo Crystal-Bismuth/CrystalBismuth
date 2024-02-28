@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "ChickenManager.h"
 #include "MathConstants.h"
+#include "RandomAIComponent.h"
+#include "MeanAIComponent.h"
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenColor color, Vector2D location)
 {
@@ -29,6 +31,9 @@ Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, Chi
 	mIsEvolved = false;
 
 	mMoveUpdateTimer = STARTING_MOVEMENT_TIMER;
+
+	mAI = new RandomAIComponent(1.0f);
+	mAI2 = new MeanAIComponent();
 }
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenProperties properties, Vector2D location)
@@ -52,6 +57,9 @@ Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, Chi
 	mDebugMode = false;
 
 	mMoveUpdateTimer = STARTING_MOVEMENT_TIMER;
+
+	mAI = new RandomAIComponent(1.0f);
+	mAI2 = new MeanAIComponent();
 }
 
 Chicken::Chicken(ChickenProperties properties, Vector2D location)
@@ -75,12 +83,22 @@ Chicken::Chicken(ChickenProperties properties, Vector2D location)
 	mDebugMode = false;
 
 	mMoveUpdateTimer = STARTING_MOVEMENT_TIMER;
+
+	mAI = new RandomAIComponent(1.0f);
+	mAI2 = new MeanAIComponent();
 }
 
 Chicken::~Chicken()
 {
 	if (mDrawingMode == AnimationMode)
 		GraphicsSystem::getInstance()->removeAndDeleteAnimation(mImage.a);
+
+	if (mAI)
+	{
+		delete mAI;
+		mAI = nullptr;
+	}
+		
 }
 
 void Chicken::loadData()
@@ -163,8 +181,15 @@ void Chicken::update(float deltaTime)
 	updateAnimation(deltaTime);
 	updateChickenState();
 
+	/*
 	if (mIsMoving)
 		updatePosition();
+	*/
+	
+	if(mAI2->getValue() != Vector2D::Zero())
+		mLoc += mAI2->getValue() * MOVEMENT_SPEED;
+	else
+		mLoc += mAI->getValue() * MOVEMENT_SPEED;
 
 	if (!mDebugMode && (mState == ChickenState::CHICK || mState == ChickenState::CHICKEN))
 	{

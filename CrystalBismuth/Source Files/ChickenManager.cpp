@@ -1,6 +1,8 @@
 #include "ChickenManager.h"
 #include "Chicken.h"
 #include "GraphicsSystem.h"
+#include "RandomAIComponent.h"
+#include "MeanAIComponent.h"
 
 using namespace std;
 
@@ -110,6 +112,32 @@ void ChickenManager::update(float deltaTime)
 	
 	for (vector<Chicken*>::iterator it = mChickensSnapshot.begin(); it != mChickensSnapshot.end(); it++)
 	{
+		Vector2D* chickenHeadings = new Vector2D[mChickensSnapshot.size()];
+		int i = 0;
+
+		for (vector<Chicken*>::iterator it2 = mChickensSnapshot.begin(); it2 != mChickensSnapshot.end(); it2++)
+		{
+			Vector2D startHeading = (*it2)->mAI->getValue();
+			Vector2D alignHeading = (*it2)->mAI2->getValue();
+
+			if (alignHeading != Vector2D::Zero())
+				chickenHeadings[i] = alignHeading;
+			else if (startHeading != Vector2D::Zero())
+				chickenHeadings[i] = startHeading;
+			else
+				continue;
+
+			i++;
+		}
+
+		if ((*it)->mAI->getValue() == Vector2D::Zero())
+			(*it)->mAI->update();
+		else
+			(*it)->mAI2->update(chickenHeadings, i);
+
+		delete[] chickenHeadings;
+		chickenHeadings = nullptr;
+
 		(*it)->update(deltaTime);
 		
 		for (vector<Chicken*>::iterator it2 = mChickensSnapshot.end()-1; it2 != it; it2--)
