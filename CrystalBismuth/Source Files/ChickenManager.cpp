@@ -120,18 +120,24 @@ void ChickenManager::update(float deltaTime)
 			Vector2D startHeading = (*it2)->mAI->getValue();
 			Vector2D alignHeading = (*it2)->mAI2->getValue();
 
-			if (alignHeading != Vector2D::Zero())
-				chickenHeadings[i] = alignHeading;
-			else if (startHeading != Vector2D::Zero())
-				chickenHeadings[i] = startHeading;
+			if (((*it2)->getLoc() - (*it)->getLoc()).length() < 5.0f)
+			{
+				if (alignHeading != Vector2D::Zero())
+					chickenHeadings[i] = alignHeading;
+				else if (startHeading != Vector2D::Zero())
+					chickenHeadings[i] = startHeading;
+				else
+					continue;
+			}
 			else
 				continue;
+			
 
 			i++;
 		}
 
 		if ((*it)->mAI->getValue() == Vector2D::Zero())
-			(*it)->mAI->update();
+			(*it)->mAI->setValue(rand() % 2 ? Vector2D::Right() : Vector2D::Down());
 		else
 			(*it)->mAI2->update(chickenHeadings, i);
 

@@ -33,6 +33,10 @@ void MeanAIComponent::update(Vector2D* vectors, int numVectors, Vector2D offset)
 	{
 		mValue = Vector2D::Zero();
 	}
+	else if (numberSummed == 1)
+	{
+		mValue = sumOffsets.normalized();
+	}
 	else
 	{
 		mValue = (sumOffsets / numberSummed).normalized();

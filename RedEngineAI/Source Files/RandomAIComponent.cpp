@@ -4,13 +4,13 @@
 RandomAIComponent::RandomAIComponent()
 	: AIComponent()
 {
-	update();
+	//update();
 }
 
 RandomAIComponent::RandomAIComponent(float weight)
 	: AIComponent(weight)
 {
-	update();
+	//update();
 }
 
 RandomAIComponent::~RandomAIComponent()

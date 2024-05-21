@@ -7,6 +7,8 @@ class AIComponent : public Trackable
 public:
 	Vector2D getValue() { return mValue * mWeight; }
 
+	void setValue(Vector2D val) { mValue = val; }
+
 protected:
 	AIComponent();
 	AIComponent(float weight);
