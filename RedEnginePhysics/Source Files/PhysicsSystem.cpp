@@ -4,6 +4,8 @@
 
 using namespace std;
 
+PhysicsSystem* PhysicsSystem::mspInstance = nullptr;
+
 PhysicsSystem::PhysicsSystem()
 {
 

@@ -14,7 +14,7 @@ Cursor::~Cursor()
 
 void Cursor::update(Vector2D mousePos)
 {
-	mLoc = mousePos;
+	*(mObjectData.l) = mousePos;
 }
 
 void Cursor::setImage(Sprite* sprite)

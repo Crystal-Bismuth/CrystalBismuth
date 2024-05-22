@@ -20,6 +20,7 @@ class GameObject2D;
 class GameListener;
 class GameCursor;
 class UIElement;
+class PhysicsSystem;
 
 const int GAME_DISPLAY_WIDTH = 1536;
 const int GAME_DISPLAY_HEIGHT = 864;
@@ -190,6 +191,7 @@ private:
 
 	GraphicsSystem* mpGraphicsSystem;
 	InputSystem* mpInputSystem;
+	PhysicsSystem* mpPhysicsSystem;
 	ChickenManager* mpChickenManager;
 	UIManager* mpUIManager;
 

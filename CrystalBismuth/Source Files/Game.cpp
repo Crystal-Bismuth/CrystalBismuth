@@ -25,6 +25,7 @@
 #include "ShopButton.h"
 #include "Building.h"
 #include <fstream>
+#include "PhysicsSystem.h"
 
 #include <assert.h>
 #include <iostream>
@@ -79,6 +80,7 @@ void Game::init(int mFPS)
 
 	mpGraphicsSystem = GraphicsSystem::getInstance();
 	mpInputSystem = InputSystem::getInstance();
+	mpPhysicsSystem = PhysicsSystem::getInstance();
 
 	assert(mpGraphicsSystem->init(GAME_DISPLAY_WIDTH, GAME_DISPLAY_HEIGHT));
 
@@ -386,6 +388,8 @@ void Game::input()
 
 void Game::update()
 {
+	mpPhysicsSystem->update(mDeltaTime);
+
 	mpGraphicsSystem->update(mDeltaTime);
 
 	mpChickenManager->update(mDeltaTime);

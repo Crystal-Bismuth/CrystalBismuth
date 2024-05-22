@@ -15,7 +15,7 @@ UIElement::UIElement(std::string spriteFilepath, std::string objectKey, Directio
 	mDrawingMode = GameObject2D::SpriteMode;
 	mImage.s = gs->createAndAddSprite(objectKey, &tex, Vector2D::Zero(), tex->getSize(), scale);
 
-	mLoc = location;
+	*(mObjectData.l) = location;
 	mOrigLoc = location;
 	mDistToMove = distanceToMove;
 	mSpeed = speed;
@@ -37,7 +37,7 @@ UIElement::UIElement(std::string spriteFilepath, std::string objectKey, Vector2D
 	mDrawingMode = GameObject2D::SpriteMode;
 	mImage.s = gs->createAndAddSprite(objectKey, &tex, Vector2D::Zero(), tex->getSize(), scale);
 
-	mLoc = location;
+	*(mObjectData.l) = location;
 	mOrigLoc = location;
 	mDistToMove = 0.0f;
 	mSpeed = 0.0f;
@@ -62,7 +62,7 @@ UIElement::UIElement(std::string animationTextureFilepath, std::string objectKey
 	mDistToMove = 0.0f;
 	mSpeed = 0.0f;
 
-	mLoc = location;
+	*(mObjectData.l) = location;
 	mAnimationDirection = (Direction)-1;
 	mAnimateOnHover = animateOnHover;
 
@@ -76,7 +76,7 @@ UIElement::UIElement(string objectKey, Vector2D location, Vector2D scale, GameOb
 	mDrawingMode = GameObject2D::None;
 	mImage.s = nullptr;
 
-	mLoc = location;
+	*(mObjectData.l) = location;
 	mOrigLoc = location;
 	mDistToMove = 0.0f;
 	mSpeed = 0.0f;
@@ -95,7 +95,7 @@ UIElement::UIElement(Sprite* sprite, Vector2D location, Vector2D scale, GameObje
 	mDrawingMode = GameObject2D::SpriteMode;
 	mImage.s = sprite;
 
-	mLoc = location;
+	*(mObjectData.l) = location;
 	mOrigLoc = location;
 	mDistToMove = 0.0f;
 	mSpeed = 0.0f;
@@ -112,7 +112,7 @@ UIElement::UIElement()
 	mDrawingMode = GameObject2D::None;
 	mImage.s = nullptr;
 
-	mLoc = Vector2D::Zero();
+	*(mObjectData.l) = Vector2D::Zero();
 	mOrigLoc = Vector2D::Zero();
 	mDistToMove = 0.0f;
 	mSpeed = 0.0f;
@@ -149,46 +149,46 @@ void UIElement::update(float deltaTime)
 	{
 		if (mAnimationDirection == Direction::Left)
 		{
-			if (mIsAnimating && mLoc.getX() > mOrigLoc.getX() - mDistToMove)
+			if (mIsAnimating && mObjectData.l->getX() > mOrigLoc.getX() - mDistToMove)
 			{
-				mLoc.setX(mLoc.getX() - mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setX(mObjectData.l->getX() - mDistToMove * deltaTime * mSpeed);
 			}
-			else if (!mIsAnimating && mLoc.getX() < mOrigLoc.getX())
+			else if (!mIsAnimating && mObjectData.l->getX() < mOrigLoc.getX())
 			{
-				mLoc.setX(mLoc.getX() + mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setX(mObjectData.l->getX() + mDistToMove * deltaTime * mSpeed);
 			}
 		}
 		else if (mAnimationDirection == Direction::Right)
 		{
-			if (mIsAnimating && mLoc.getX() < mOrigLoc.getX() + mDistToMove)
+			if (mIsAnimating && mObjectData.l->getX() < mOrigLoc.getX() + mDistToMove)
 			{
-				mLoc.setX(mLoc.getX() + mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setX(mObjectData.l->getX() + mDistToMove * deltaTime * mSpeed);
 			}
-			else if (!mIsAnimating && mLoc.getX() > mOrigLoc.getX())
+			else if (!mIsAnimating && mObjectData.l->getX() > mOrigLoc.getX())
 			{
-				mLoc.setX(mLoc.getX() - mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setX(mObjectData.l->getX() - mDistToMove * deltaTime * mSpeed);
 			}
 		}
 		else if (mAnimationDirection == Direction::Up)
 		{
-			if (mIsAnimating && mLoc.getY() < mOrigLoc.getY() + mDistToMove)
+			if (mIsAnimating && mObjectData.l->getY() < mOrigLoc.getY() + mDistToMove)
 			{
-				mLoc.setY(mLoc.getY() + mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setY(mObjectData.l->getY() + mDistToMove * deltaTime * mSpeed);
 			}
-			else if (!mIsAnimating && mLoc.getY() > mOrigLoc.getY())
+			else if (!mIsAnimating && mObjectData.l->getY() > mOrigLoc.getY())
 			{
-				mLoc.setY(mLoc.getY() - mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setY(mObjectData.l->getY() - mDistToMove * deltaTime * mSpeed);
 			}
 		}
 		else if (mAnimationDirection == Direction::Down)
 		{
-			if (mIsAnimating && mLoc.getY() > mOrigLoc.getY() - mDistToMove)
+			if (mIsAnimating && mObjectData.l->getY() > mOrigLoc.getY() - mDistToMove)
 			{
-				mLoc.setY(mLoc.getY() - mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setY(mObjectData.l->getY() - mDistToMove * deltaTime * mSpeed);
 			}
-			else if (!mIsAnimating && mLoc.getY() < mOrigLoc.getY())
+			else if (!mIsAnimating && mObjectData.l->getY() < mOrigLoc.getY())
 			{
-				mLoc.setY(mLoc.getY() + mDistToMove * deltaTime * mSpeed);
+				mObjectData.l->setY(mObjectData.l->getY() + mDistToMove * deltaTime * mSpeed);
 			}
 		}
 	}

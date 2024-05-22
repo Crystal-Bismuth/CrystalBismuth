@@ -17,7 +17,7 @@ const float MAXIMUM_MOVE_TIMER = 3.0f;
 const float MINIMUM_MOVE_TIMER = 1.0f;
 //const float DEBUG_MOVE_TIMER = 1.0f;
 
-const float MOVEMENT_SPEED = 0.05f;
+const float MOVEMENT_SPEED = 2.5f;
 
 const float MAXIMUM_MOVE_DISTANCE = 1.0f;
 const float MINIMUM_MOVE_DISTANCE = 0.25f;

@@ -2,30 +2,58 @@
 #include "Animation.h"
 #include "Sprite.h"
 #include "GraphicsSystem.h"
+#include "PhysicsSystem.h"
+#include "PhysicsData2D.h"
 
 GameObject2D::GameObject2D()
 {
-	mLoc = Vector2D::Zero();
+	mIsUsingPhysics = false;
+	mObjectData.l = new Vector2D();
 	mDrawingMode = DrawMode::None;
 	mImage.s = nullptr;
 }
 
 GameObject2D::~GameObject2D()
 {
-
+	if (mIsUsingPhysics)
+		delete mObjectData.p;
+	else
+		delete mObjectData.l;
 }
 
-GameObject2D::GameObject2D(Sprite* sprite, Vector2D location, GameObject2D* parent)
+GameObject2D::GameObject2D(Sprite* sprite, Vector2D location, GameObject2D* parent, bool isUsingPhysics)
 {
-	mLoc = location;
+	mIsUsingPhysics = isUsingPhysics;
+	if (mIsUsingPhysics)
+	{
+		mObjectData.p = PhysicsSystem::getInstance()->createObject();
+		mObjectData.p->setPos(location);
+	}
+	else
+	{
+		mObjectData.l = new Vector2D();
+		*(mObjectData.l) = location;
+	}
+
 	mDrawingMode = DrawMode::SpriteMode;
 	mImage.s = sprite;
 	mParent = parent;
 }
 
-GameObject2D::GameObject2D(Animation* animation, Vector2D location, GameObject2D* parent)
+GameObject2D::GameObject2D(Animation* animation, Vector2D location, GameObject2D* parent, bool isUsingPhysics)
 {
-	mLoc = location;
+	mIsUsingPhysics = isUsingPhysics;
+	if (mIsUsingPhysics)
+	{
+		mObjectData.p = PhysicsSystem::getInstance()->createObject();
+		mObjectData.p->setPos(location);
+	}
+	else
+	{
+		mObjectData.l = new Vector2D();
+		*(mObjectData.l) = location;
+	}
+
 	mDrawingMode = DrawMode::AnimationMode;
 	mImage.a = animation;
 	mParent = parent;

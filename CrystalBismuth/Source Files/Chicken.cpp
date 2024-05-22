@@ -7,6 +7,7 @@
 #include "MathConstants.h"
 #include "RandomAIComponent.h"
 #include "MeanAIComponent.h"
+#include "PhysicsSystem.h"
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenColor color, Vector2D location)
 {
@@ -22,7 +23,11 @@ Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, Chi
 
 	updateProperties(color);
 
-	mLoc = location;
+	mObjectData.p = PhysicsSystem::getInstance()->createObject();
+	setLoc(location);
+
+	mIsUsingPhysics = true;
+
 	mIsMoving = false;
 	mStateChanged = false;
 
@@ -50,7 +55,9 @@ Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, Chi
 
 	mProperties = properties;
 
-	mLoc = location;
+	mIsUsingPhysics = true;
+	mObjectData.p = PhysicsSystem::getInstance()->createObject();
+	setLoc(location);
 	mIsMoving = false;
 	mStateChanged = false;
 
@@ -76,7 +83,9 @@ Chicken::Chicken(ChickenProperties properties, Vector2D location)
 
 	mProperties = properties;
 
-	mLoc = location;
+	mIsUsingPhysics = true;
+	mObjectData.p = PhysicsSystem::getInstance()->createObject();
+	setLoc(location);
 	mIsMoving = false;
 	mStateChanged = false;
 
@@ -98,6 +107,9 @@ Chicken::~Chicken()
 		delete mAI;
 		mAI = nullptr;
 	}
+
+	delete mObjectData.p;
+	mObjectData.p = nullptr;
 		
 }
 
@@ -185,17 +197,21 @@ void Chicken::update(float deltaTime)
 	if (mIsMoving)
 		updatePosition();
 	*/
+	//Movement code [DISABLED FOR PHYSICS TESTING]
 	
 	if(mAI2->getValue() != Vector2D::Zero())
-		mLoc += mAI2->getValue() * MOVEMENT_SPEED;
+		mObjectData.p->setVel(mAI2->getValue() * MOVEMENT_SPEED);
 	else
-		mLoc += mAI->getValue() * MOVEMENT_SPEED;
+		mObjectData.p->setVel(mAI->getValue() * MOVEMENT_SPEED);
 
+	//Old Random Move Start Code
+	/*
 	if (!mDebugMode && (mState == ChickenState::CHICK || mState == ChickenState::CHICKEN))
 	{
 		mMoveUpdateTimer -= deltaTime;
 		move();
 	}
+	*/
 
 	if (mStateChanged)
 	{
@@ -264,10 +280,10 @@ void Chicken::updateChickenState()
 void Chicken::updatePosition()
 {
 	
-	if ((mMoveEnd - mLoc).length() < ((mMoveEnd - mMoveStart).normalized() * MOVEMENT_SPEED).length())
+	if ((mMoveEnd - *(mObjectData.l)).length() < ((mMoveEnd - mMoveStart).normalized() * MOVEMENT_SPEED).length())
 	{
 		mIsMoving = false;
-		mLoc = mMoveEnd;
+		*(mObjectData.l) = mMoveEnd;
 
 		switch (mState)
 		{
@@ -281,7 +297,7 @@ void Chicken::updatePosition()
 	}
 	else
 	{
-		mLoc += (mMoveEnd - mMoveStart).normalized() * MOVEMENT_SPEED;
+		*(mObjectData.l) += (mMoveEnd - mMoveStart).normalized() * MOVEMENT_SPEED;
 	}
 }
 
@@ -294,8 +310,8 @@ void Chicken::move() //Maybe move animation/sprite changes into it's own functio
 
 		float randomDistance = ((float)rand() / (float)RAND_MAX * (MAXIMUM_MOVE_DISTANCE - MINIMUM_MOVE_DISTANCE)) + MINIMUM_MOVE_DISTANCE;
 
-		mMoveStart = mLoc;
-		mMoveEnd = mLoc + dir * randomDistance;
+		mMoveStart = *(mObjectData.l);
+		mMoveEnd = *(mObjectData.l) + dir * randomDistance;
 		mIsMoving = true;
 
 		mMoveUpdateTimer = (((float)rand() / (float)RAND_MAX) * MOVE_RANGE) + MINIMUM_MOVE_TIMER;
@@ -397,7 +413,7 @@ void Chicken::moveToLocation(Vector2D location)
 {
 	if ((mState == ChickenState::CHICK || mState == ChickenState::CHICKEN || mState == ChickenState::CHICK_WALKING || mState == ChickenState::CHICKEN_WALKING))
 	{
-		mMoveStart = mLoc;
+		mMoveStart = *(mObjectData.l);
 		mMoveEnd = location;
 		mIsMoving = true;
 
@@ -615,9 +631,9 @@ void Chicken::layEgg()
 	ChickenManager* cm = ChickenManager::getInstance();
 
 	if (mIsFertile)
-		cm->createAndAddChicken(mFertileProperties, mLoc);
+		cm->createAndAddChicken(mFertileProperties, *(mObjectData.l));
 	else
-		cm->createUnfertileEgg(mProperties, mLoc);
+		cm->createUnfertileEgg(mProperties, *(mObjectData.l));
 
 	mIsFertile = false;
 }
