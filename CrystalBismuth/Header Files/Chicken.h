@@ -9,7 +9,7 @@ class Sprite;
 class Texture2D;
 class AnimationData;
 class RandomAIComponent;
-class MeanAIComponent;
+class FlockingAIComponent;
 
 const float STARTING_MOVEMENT_TIMER = 3.0f;
 
@@ -163,7 +163,7 @@ private:
 	ChickenProperties mProperties;
 
 	RandomAIComponent* mAI;
-	MeanAIComponent* mAI2;
+	FlockingAIComponent* mAI2;
 
 	bool mIsEvolved; //Change this to a enum for evolution type later
 

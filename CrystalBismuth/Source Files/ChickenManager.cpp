@@ -2,7 +2,7 @@
 #include "Chicken.h"
 #include "GraphicsSystem.h"
 #include "RandomAIComponent.h"
-#include "MeanAIComponent.h"
+#include "FlockingAIComponent.h"
 
 using namespace std;
 
@@ -112,7 +112,8 @@ void ChickenManager::update(float deltaTime)
 	
 	for (vector<Chicken*>::iterator it = mChickensSnapshot.begin(); it != mChickensSnapshot.end(); it++)
 	{
-		Vector2D* chickenHeadings = new Vector2D[mChickensSnapshot.size()];
+		Vector2D* chickenVelocities = new Vector2D[mChickensSnapshot.size()];
+		Vector2D* chickenPositions = new Vector2D[mChickensSnapshot.size()]; //wtf is going on here... Did I do the exclusion radius twice???
 		int i = 0;
 
 		for (vector<Chicken*>::iterator it2 = mChickensSnapshot.begin(); it2 != mChickensSnapshot.end(); it2++)
@@ -123,9 +124,9 @@ void ChickenManager::update(float deltaTime)
 			if (((*it2)->getLoc() - (*it)->getLoc()).length() < 5.0f)
 			{
 				if (alignHeading != Vector2D::Zero())
-					chickenHeadings[i] = alignHeading;
+					chickenVelocities[i] = alignHeading;
 				else if (startHeading != Vector2D::Zero())
-					chickenHeadings[i] = startHeading;
+					chickenVelocities[i] = startHeading;
 				else
 					continue;
 			}

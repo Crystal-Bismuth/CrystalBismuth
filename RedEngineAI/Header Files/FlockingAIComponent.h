@@ -9,7 +9,7 @@ public:
 	FlockingAIComponent(float alignmentWeight, float cohesionWeight, float separationWeight, float exclusionRadius = 0.0f, float weight = 1.0f);
 	~FlockingAIComponent();
 
-	void update(Vector2D* locationVectors, Vector2D* headingVectors, int numVectors, Vector2D offset = Vector2D::Zero());
+	void update(Vector2D* locationVectors, Vector2D* velocityVectors, int numVectors, Vector2D offset = Vector2D::Zero());
 
 private:
 	MeanAIComponent mAlignmentComponent;

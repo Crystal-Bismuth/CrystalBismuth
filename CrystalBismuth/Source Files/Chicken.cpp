@@ -6,7 +6,7 @@
 #include "ChickenManager.h"
 #include "MathConstants.h"
 #include "RandomAIComponent.h"
-#include "MeanAIComponent.h"
+#include "FlockingAIComponent.h"
 #include "PhysicsSystem.h"
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenColor color, Vector2D location)
@@ -38,7 +38,7 @@ Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, Chi
 	mMoveUpdateTimer = STARTING_MOVEMENT_TIMER;
 
 	mAI = new RandomAIComponent(1.0f);
-	mAI2 = new MeanAIComponent();
+	mAI2 = new FlockingAIComponent(0.33f, 0.33f, 0.34f, 2.0f);
 }
 
 Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, ChickenProperties properties, Vector2D location)
@@ -66,7 +66,7 @@ Chicken::Chicken(float timeToHatch, float timeToMaturity, float timeToDeath, Chi
 	mMoveUpdateTimer = STARTING_MOVEMENT_TIMER;
 
 	mAI = new RandomAIComponent(1.0f);
-	mAI2 = new MeanAIComponent();
+	mAI2 = new FlockingAIComponent(0.33f, 0.33f, 0.34f, 2.0f);
 }
 
 Chicken::Chicken(ChickenProperties properties, Vector2D location)
@@ -94,7 +94,7 @@ Chicken::Chicken(ChickenProperties properties, Vector2D location)
 	mMoveUpdateTimer = STARTING_MOVEMENT_TIMER;
 
 	mAI = new RandomAIComponent(1.0f);
-	mAI2 = new MeanAIComponent();
+	mAI2 = new FlockingAIComponent(0.33f, 0.33f, 0.34f, 2.0f);
 }
 
 Chicken::~Chicken()

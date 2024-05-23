@@ -24,6 +24,9 @@
     <ClInclude Include="Header Files\MeanAIComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\FlockingAIComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\AIComponent.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source Files\MeanAIComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\FlockingAIComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

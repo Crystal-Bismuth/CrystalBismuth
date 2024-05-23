@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\AIComponent.h" />
+    <ClInclude Include="Header Files\FlockingAIComponent.h" />
     <ClInclude Include="Header Files\MeanAIComponent.h" />
     <ClInclude Include="Header Files\RandomAIComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\AIComponent.cpp" />
+    <ClCompile Include="Source Files\FlockingAIComponent.cpp" />
     <ClCompile Include="Source Files\MeanAIComponent.cpp" />
     <ClCompile Include="Source Files\RandomAIComponent.cpp" />
   </ItemGroup>
